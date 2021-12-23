@@ -1,29 +1,37 @@
 import {Component} from 'react';
 import Searchbar from './components/Searchbar/Searchbar';
+import { ToastContainer } from 'react-toastify';
 // import logo from './logo.svg';
 import './App.css';
 
 export default class App extends Component {
   state = {
-    images: null,
-    loading: false,
+    value: '',
   }
-  componentDidMount () {
-    this.setState({loading: true});
+  handleFormSubmit = value => {
+    this.setState({value});
+  } 
+  // componentDidMount () {
+  //   this.setState({loading: true});
     // const KEY = 'key=23877606-1096bee22002de3079c9510e6';
     // const BASE_URL = `https://pixabay.com/api/?q=${q}&page=${page}&${KEY}&image_type=photo&orientation=horizontal&per_page=12`;
     
-    setTimeout(() => {
-      fetch ('https://pixabay.com/api/?q=cat&page=1&key=23877606-1096bee22002de3079c9510e6&image_type=photo&orientation=horizontal&per_page=12')
-      .then(res => res.json())
-      .then(images => this.setState({images}))
-      .finally(this.setState({loading: false}))
-    }, 2000);
+//     setTimeout(() => {
+//       fetch ('https://pixabay.com/api/?q=cat&page=1&key=23877606-1096bee22002de3079c9510e6&image_type=photo&orientation=horizontal&per_page=12')
+//       .then(res => res.json())
+//       .then(images => this.setState({images}))
+//       .finally(this.setState({loading: false}))
+//     }, 2000);
     
-}
+// }
   render () {
     return (
-      <Searchbar/>
+      <div>
+      {/* {style={{maxWidth: 1170, margin: '0 auto', padding: 20}}} */}
+        <Searchbar onSubmit={this.handleSubmit}/>
+        <ToastContainer/>
+      </div> 
+      
 //       <div style={{maxWidth: 1170, margin: '0 auto', padding: 20}}>
 //         {this.state.loading && <h2>LOADING...</h2>}
 //         {this.state.images && <div>

@@ -3,15 +3,31 @@ import styles from './Searchbar.module.css';
 
 export default class Searchbar extends Component {
     state = {
-
+      value: '',
      }
-handleNameChange = e => {
-    this.setState({})
-}
+
+     handleChange = e => {
+    this.setState({
+      value: e.currentTarget.value,
+    })
+  console.log(e.currentTarget.value);
+  };
+
+    handleSubmit = e => {
+  e.preventDefault();
+  if(this.state.value.trim() === ''){
+    alert ('Type data for search!')
+    return
+  }
+    this.props.onSubmit(this.state.value);
+    this.setState({ value: '' });
+  };
+
+
      render () {
          return (
 <header className={styles.Searchbar}>
-  <form className={styles.SearchForm}>
+  <form onSubmit={this.handleSubmit} className={styles.SearchForm} >
     <button type="submit" className={styles[`SearchForm-button`]}>
       <span className={styles[`SearchForm-button-label`]}>Search</span>
     </button>
@@ -19,9 +35,13 @@ handleNameChange = e => {
     <input
       className={styles[`SearchForm-input`]}
       type="text"
-      autocomplete="off"
-      autofocus
+      autoComplete="off"
+      autoFocus
       placeholder="Search images and photos"
+      value={this.state.value}
+      onChange={e => {
+        this.handleChange(e)
+      }}
     />
   </form>
 </header>
