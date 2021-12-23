@@ -11,14 +11,14 @@ export default class Searchbar extends Component {
     this.setState({
       value: e.currentTarget.value,
     })
-  console.log(e.currentTarget.value);
+  // console.log(e.currentTarget.value);
   };
 
     handleSubmit = e => {
   e.preventDefault();
   if(this.state.value.trim() === ''){
-    toast("Type data for search!");
-    return
+    return toast.error("Type data for search!");
+    
   }
     this.props.onSubmit(this.state.value);
     this.setState({ value: '' });

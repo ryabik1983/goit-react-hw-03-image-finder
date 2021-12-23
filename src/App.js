@@ -1,6 +1,9 @@
 import {Component} from 'react';
 import Searchbar from './components/Searchbar/Searchbar';
-import { ToastContainer } from 'react-toastify';
+import ImageInfo from './components/imageInfo';
+
+// import { ToastContainer } from 'react-toastify';
+
 // import logo from './logo.svg';
 import './App.css';
 
@@ -8,7 +11,7 @@ export default class App extends Component {
   state = {
     value: '',
   }
-  handleFormSubmit = value => {
+  handleSubmit = value => {
     this.setState({value});
   } 
   // componentDidMount () {
@@ -29,7 +32,18 @@ export default class App extends Component {
       <div>
       {/* {style={{maxWidth: 1170, margin: '0 auto', padding: 20}}} */}
         <Searchbar onSubmit={this.handleSubmit}/>
-        <ToastContainer/>
+        <ImageInfo value={this.state.value}/>
+        {/* <ToastContainer 
+        position="top-center"
+        autoClose={5000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover/> */}
+
       </div> 
       
 //       <div style={{maxWidth: 1170, margin: '0 auto', padding: 20}}>
