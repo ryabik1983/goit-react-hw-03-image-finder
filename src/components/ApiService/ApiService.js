@@ -5,6 +5,6 @@ function fetchApi(q, page) {
     return fetchData;
     
   }
-  console.log(fetchData);
+  
 
   export default fetchApi;
