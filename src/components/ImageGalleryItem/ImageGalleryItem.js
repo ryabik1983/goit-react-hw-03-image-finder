@@ -1,23 +1,27 @@
-export default function ImageGalleryItem ({pokemon: {sprites, name, stats}}) {
-    return (
-        <div>
-                <p>{name}</p>
-                <img 
-                src={sprites.other['official-artwork'].front_default}
-                alt={name}
-                width="240"
-                height="100"
-                />
-                <ul>
-                    {stats.map(
-                        entry => (
-                            <li key={entry.stat.name}>
-                                {entry.stat.name}: {entry.base_stat}
-                            </li>
-                        )
-                    )}
-                </ul>
-                </div>
-    )
+import styles from './ImageGalleryItem.module.css';
+import PropTypes from 'prop-types';
 
-}
+const ImageGalleryItem = ({ images, openModal }) => {
+  return images.map(el => (
+    <li
+      key={el.id}
+      className={styles['ImageGalleryItem']}
+      onClick={() => {
+        openModal({ src: el.largeImageURL, id: el.id });
+      }}
+    >
+      <img
+        className={styles['ImageGalleryItem-image']}
+        src={el.webformatURL}
+        alt={el.id}
+      />
+    </li>
+  ));
+};
+
+ImageGalleryItem.propTypes = {
+  images: PropTypes.array.isRequired,
+  openModal: PropTypes.func,
+};
+
+export default ImageGalleryItem;

@@ -12,7 +12,7 @@ export default class Searchbar extends Component {
     this.setState({
       value: e.currentTarget.value,
     })
-  // console.log(e.currentTarget.value);
+  
   };
 
     handleSubmit = e => {
